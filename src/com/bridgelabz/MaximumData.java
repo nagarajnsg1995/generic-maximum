@@ -1,23 +1,35 @@
 package com.bridgelabz;
 
-public class MaximumData {
-   public static <T extends Comparable>T maximum(T a, T b, T c) {
-      T max = a;
-      if(b.compareTo(max)>0){
-         max = b;
-      }
-      if(c.compareTo(max)>0){
-         max = c;
-      }
-      return max;
-   }
+class GenericData<T extends Comparable> {
+    T a, b, c;
 
-   public static void main(String[] args) {
-      Integer resultOne = MaximumData.maximum(10, 5, 8);
-      Float resultTwo = MaximumData.maximum(10.7f, 5.4f, 18.6f);
-      String resultThree = MaximumData.maximum("apple", "peach", "orange");
-      System.out.println("maximum integer number is:" +resultOne);
-      System.out.println("maximum float number is:" +resultTwo);
-      System.out.println("maximum string name is:" +resultThree);
-   }
+    public GenericData(T a, T b, T c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    public T maximum() {
+        T max = a;
+        if (b.compareTo(max) > 0) {
+            max = b;
+        }
+        if (c.compareTo(max) > 0) {
+            max = c;
+        }
+        return max;
+    }
+}
+
+
+public class MaximumData {
+
+    public static void main(String[] args) {
+        GenericData<Integer> genericData = new GenericData<>(4, 9, 3);
+        GenericData<Float> genericData1 = new GenericData<>(1.7f, 13.1f, 17.2f);
+        GenericData<String> genericData2 = new GenericData<>("apple", "banana", "mango");
+        System.out.println("maximum integer number is: " + genericData.maximum());
+        System.out.println("maximum float number is: " + genericData1.maximum());
+        System.out.println("maximum string name is: " + genericData2.maximum());
+    }
 }
